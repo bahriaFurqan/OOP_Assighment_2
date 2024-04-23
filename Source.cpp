@@ -7,110 +7,117 @@
 #include"timetable.h"
 
 int main() {
+	string pathfor_student = "C:/Users/DELL PRECISION 5530/OneDrive/Desktop/Student.txt";
+    string pathfor_teacher = "C:/Users/DELL PRECISION 5530/OneDrive/Desktop/Teacher.txt";
+    string pathfor_course = "C:/Users/DELL PRECISION 5530/OneDrive/Desktop/Course.txt";
+    string pathfor_room = "C:/Users/DELL PRECISION 5530/OneDrive/Desktop/Room.txt";
+    string pathfor_section = "C:/Users/DELL PRECISION 5530/OneDrive/Desktop/Section.txt";
+
 	Timetable timetable;
-	//HERE RANDOMLY GENERATED TIMETABLE IS CREATED
 	srand(time(0));
 	vector<time_> timeslots = {
 	time_("Monday", "9:00 - 10:00"),
 	time_("Tuesday", "10:00 - 11:00"),
 	time_("Wednesday", "11:00 - 12:00"),
-
 	time_("Thursday", "12:00 - 1:00"),
 	time_("Friday", "1:00 - 2:00"),
 	};
 
+	timetable.load_studentdata_from_file(pathfor_student);
+    timetable.load_teacherdata_from_file(pathfor_teacher);
+    timetable.load_coursedata_from_file(pathfor_course);
+    timetable.load_roomdata_from_file(pathfor_room);
+    timetable.load_sectiondata_from_file(pathfor_section);
 
-
+	cout<<"********************WELCOME TO TIMETABLE MANAGEMENT SYSTEM*********************"<<endl;
 	for (;;) {
 		int option;
-		cout << "1. Generate timetable" << endl; cout << "2. Print timetable" << endl;
-		cout << "3. Add student" << endl; //added this option to add student
-		cout << "4.Add student to section" << endl; //added this option to add student to section
-		cout << "5.Add teacher" << endl; //added this option to add teacher
-		cout << "6. Add course" << endl; //added this option to add course
-		cout << "7. ADD room" << endl; //added this option to add room
-		cout << "8.Add section" << endl; //added this option to add section
-		cout << "9. Print timetable for a specific day" << endl; cout << "10. Print timetable for a specific teacher" << endl; cout << "11. Print timetable for a specific section" << endl; cout << "12. Print timetable for a specific room" << endl; 
-		cout<<"13.print timetable for a specific student"<<endl; //added this option to print timetable for a specific student
-		cout << "14. print course vector" << endl; //added this option to print course vector
-		cout << "15. print student vector" << endl; //added this option to print student vector		
-		cout << "16.print teacher vector" << endl; //added this option to print teacher vector	
-		cout << "17print the section vector and its student" << endl; //added this option to print the section vector and its student
-		cout<<"18.print room vector" << endl; //added this option to print room vector
-		cout << "19. Save to file" << endl; cout << "20. Load from file" << endl;
-		cout << "21. Exit" << endl;
+		cout << "1. Generate timetable" << endl;
+		cout << "2. Print timetable" << endl;
+		cout << "3. Add student to section"<< endl; 
+		cout << "4. Add teacher" << endl; 
+		cout << "5. Add course" << endl; 
+		cout << "6. ADD room" << endl; 
+		cout << "7. Add section" << endl; 
+		cout << "8. Print timetable for a specific day" << endl; 
+		cout << "9. Print timetable for a specific teacher" << endl; 
+		cout << "10. Print timetable for a specific section" << endl;
+		cout << "11. Print timetable for a specific room" << endl; 
+		cout << "12. print timetable for a specific student"<<endl; 	 
+		cout << "13. Save to file" << endl; 
+		cout << "14. Load from file" << endl;
+		cout << "15. Exit" << endl;
 		cout << "Enter option: ";
-
 		cin >> option;
 		if (option == 1) {
 			timetable.clearTimetable();
 			for (int i = 0; i < 10; i++) {
 				course c = timetable.courses[rand() % timetable.courses.size()]; teacher t = timetable.teachers[rand() % timetable.teachers.size()]; room r = timetable.rooms[rand() % timetable.rooms.size()];
 				time_ ti = timeslots[rand() % timeslots.size()];
-
 				section s = timetable.sections[rand() % timetable.sections.size()]; timetable.addCourse(ti.day, c, t, r, ti, s);
 			}
-
 		}
 		else if (option == 2) {
 			timetable.printTimetable();
 		}
 		else if (option == 3)
 		{
-			string name, enrollment;
-			cout << "Enter student name: ";
-			cin >> name;
-			cout << "Enter enrollment: ";
-			cin >> enrollment;
-			timetable.addStudent(name, enrollment);
-		}
-		else if (option == 4)
-		{
 			string section_name, student_name, enrollment;
+			cout << "SECTIONS:-" << endl;
+			for(int i = 0; i < timetable.sections.size(); i++)
+			{
+				cout<<"**********"<<endl;
+				cout << "Section:" << timetable.sections[i].section_name << endl;
+			}
 			cout << "Enter section name: ";
 			cin >> section_name;
 			cout << "Enter student name: ";
-			cin >> student_name;
+			cin.ignore();
+			getline(cin, student_name);
 			cout << "Enter enrollment: ";
 			cin >> enrollment;
-			timetable.addSection(section_name, student_name, enrollment);
+			cout<<"Student added to section successfully"<<endl;
+			timetable.add_to_Section(section_name, student_name, enrollment);
 		}
 		
-		else if (option == 5)
+		else if (option == 4)
 		{
 			string name, teacher_id;
 			cout << "Enter teacher name: ";
-			cin >> name;
+			cin.ignore();
+            getline(cin, name);
 			cout << "Enter teacher id: ";
 			cin >> teacher_id;
+            cout<<"Teacher added successfully"<<endl;
 			timetable.addTeacher(name, teacher_id);
 		}
-		else if (option == 6)
+		else if (option == 5)
 		{
 			string course_name;
 			cout << "Enter course name: ";
 			cin >> course_name;
+            cout<<"Course added successfully"<<endl;
 			timetable.addCourse(course_name);
 		}
-		else if (option == 7)
+		else if (option == 6)
 		{
 			string room_no;
 			cout << "Enter room number: ";
 			cin >> room_no;
+            cout<<"Room added successfully"<<endl;
 			timetable.add_room(room_no);
 		}
-		else if (option == 8)
+		else if (option == 7)
 		{
-			string section_name, student_name, enrollment;
+			string section_name;
 			cout << "Enter section name: ";
-			cin >> section_name;
-			cout << "Enter student name: ";
-			cin >> student_name;
-			cout << "Enter enrollment: ";
-			cin >> enrollment;
-			timetable.addSection(section_name, student_name, enrollment);
+			cin.ignore();
+            getline(cin, section_name);
+			cout<<"Section added successfully"<<endl;
+            timetable.addSection(section_name);
+			
 		}
-		else if (option == 9) {
+		else if (option == 8) {
 			string day;
 			for (;;)
 			{
@@ -129,7 +136,7 @@ int main() {
 			timetable.printTimetableForDay(day);
 
 		}
-		else if (option == 10) {
+		else if (option == 9) {
 			string teacher_name;
 			for (int i = 0; i < timetable.teachers.size(); i++)
 			{
@@ -147,7 +154,7 @@ int main() {
 			}
 			timetable.printTeacherTimetable(teacher_name);
 		}
-		else if (option == 11) {
+		else if (option == 10) {
 			string section_name;
 			for (int i = 0; i < timetable.sections.size(); i++)
 			{
@@ -159,93 +166,37 @@ int main() {
 			timetable.printSectionTimetable(section_name);
 		}
 
-		else if (option == 12) {
+		else if (option == 11) {
 			string room_no;
 			for (int i = 0; i < timetable.rooms.size(); i++) {
 				cout << "ROOM:" << endl;
 				cout << "Room:" << timetable.rooms[i].room_no << endl;
 			}
-
 			cout << "Enter room number: "; cin >> room_no;
 			timetable.printRoomTimetable(room_no);
-
 		}
-		else if (option == 13) {
+		else if (option == 12) {
 			string student_name;
+			string section_name;
+			cout << "SECTIONS:-" << endl;
+			for(int i = 0; i < timetable.sections.size(); i++)
+			{
+				cout<<"**********"<<endl;
+				cout << "Section:" << timetable.sections[i].section_name << endl;
+				for(int j = 0; j < timetable.sections[i].students.size(); j++)
+				{
+					cout<< j+1 << "Student:" << timetable.sections[i].students[j].name << endl;
+				}
+			}
+           cout << "Enter section name: ";
+			cin.ignore();
+			getline(cin, section_name);
 			cout << "Enter student name: ";
 			cin.ignore();
 			getline(cin, student_name);
-			if (student_name.empty()) {
-				cout << "Invalid student name." << endl;
-				continue;
-			}
-			else {
-				bool student_found = false;  // Initialize student_found
-				for (const auto& section : timetable.sections) {
-					for (const auto& student : section.students) {
-						if (student.name == student_name) {
-							student_found = true;
-							break;
-						}
-					}
-					if (student_found) {
-						break;
-					}
-				}
-				if (!student_found) {
-					cout << "Student not found." << endl;
-					continue;
-				}
-			}
-			}
-		
-		else if (option == 14)
-		{
-			for (int i = 0; i < timetable.courses.size(); i++)
-			{
-				cout << "COURSES:" << endl;
-				cout << "Course:" << timetable.courses[i].course_name << endl;
-			}
-			}
-		
-		else if (option == 15) {
-				for (const auto& section : timetable.sections) {
-					cout << "STUDENTS in Section " << section.section_name << ":" << endl;
-					for (const auto& student : section.students) {
-						cout << "Student: " << student.name << endl;
-					}
-					cout << endl;
-				}
+           timetable.printStudentTimetable(section_name,student_name);
 		}
-
-		else if (option == 16)
-		{
-			for (int i = 0; i < timetable.teachers.size(); i++)
-			{
-				cout << "TEACHERS:" << endl;
-				cout << "Teacher:" << timetable.teachers[i].name << endl;
-			}
-			}
-		else if (option == 17) {
-				for (const auto& section : timetable.sections) {
-					cout << "SECTION:" << endl;
-					cout << "Section: " << section.section_name << endl;
-					for (const auto& student : section.students) {
-						cout << "Student: " << student.name << endl;
-					}
-					cout << endl;
-				}
-				}
-		else if (option == 18)
-		{
-			for (int i = 0; i < timetable.rooms.size(); i++)
-			{
-				cout << "ROOM:" << endl;
-				cout << "Room:" << timetable.rooms[i].room_no << endl;
-			}
-			}
-
-		else if (option == 19) {
+		else if (option == 13) {
 			string path = "C:/Users/DELL PRECISION 5530/OneDrive/Desktop/timetable.txt"; ofstream file(path, ios::trunc);
 			if (file.is_open()) {
 				for (const auto& entry : timetable.entries) {
@@ -266,7 +217,7 @@ int main() {
 
 			}
 		}
-		else if (option == 20) {
+		else if (option == 14) {
 			string path = "C:/Users/DELL PRECISION 5530/OneDrive/Desktop/timetable.txt";
 			timetable.clearTimetable();
 			ifstream file(path);
@@ -274,14 +225,13 @@ int main() {
 				string line;
 				while (getline(file, line)) {
 					stringstream ss(line);
-					string day, course_name, teacher_name, room_no, time_slot, section_name; // Removed student_name
+					string day, course_name, teacher_name, room_no, time_slot, section_name;
 					getline(ss, day, ',');
 					getline(ss, course_name, ',');
 					getline(ss, teacher_name, ',');
 					getline(ss, room_no, ',');
 					getline(ss, time_slot, ',');
 					getline(ss, section_name, ',');
-					// Removed student_name
 					timetable.appendEntry(Timetable::TimetableEntry(day, course(course_name), teacher(teacher_name, ""), room(room_no), time_(day, time_slot), section_name)); // Removed student_name
 				}
 				file.close();
@@ -292,7 +242,13 @@ int main() {
 			}
 			}
 
-		else if (option == 21) {
+		else if (option == 15) {
+        cout << "Exiting program." << endl;
+         timetable.save_studentdata_to_file(pathfor_student);
+         timetable.save_teacherdata_to_file(pathfor_teacher);
+         timetable.save_coursedata_to_file(pathfor_course);
+         timetable.save_roomdata_to_file(pathfor_room);
+         timetable.save_sectiondata_to_file(pathfor_section);
 			break;
 		}
 

@@ -1,0 +1,8 @@
+A,furqan ahmad,024
+A,sami shahid,333
+A,jhanzaib amir,222
+B,hamza Satti,033
+B,Mudassir Riaz,055
+C,Zohad Khan,098
+D,Aryan,055
+E,Armaghan Qazi,066

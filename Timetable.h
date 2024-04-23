@@ -9,7 +9,8 @@
 #include <map>
 #include <fstream>
 #include <sstream>
-class Timetable {
+class Timetable 
+{
 public:
 	vector<student> students;
 	vector<section> sections;

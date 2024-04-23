@@ -1,0 +1,10 @@
+Monday,DS,GHULAM QAMAR,4-01,9:00 - 10:00,A,Ali
+Monday,English,DR TAMIM AHMAD KHAN,4-16,9:00 - 10:00,C,Asad
+Tuesday,OOP,GHULAM QAMAR,4-02,10:00 - 11:00,D,Ahsan
+Wednesday,English,ZUBAIR ABBASI,4-02,11:00 - 12:00,E,Adeel
+Wednesday,English,DR AWAIS MAJEED,4-16,11:00 - 12:00,B,Ahmed
+Thursday,LA,DR TAMIM AHMAD KHAN,4-17,12:00 - 1:00,D,Ahsan
+Thursday,DS,ZUBAIR ABBASI,4-01,12:00 - 1:00,E,Adeel
+Thursday,ISE,GHULAM QAMAR,4-02,12:00 - 1:00,E,Adeel
+Thursday,DS,ZUBAIR ABBASI,4-15,12:00 - 1:00,D,Ahsan
+Friday,LA,DR AWAIS MAJEED,4-01,1:00 - 2:00,D,Ahsan

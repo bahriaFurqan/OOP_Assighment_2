@@ -372,3 +372,13 @@ void Timetable::save_sectiondata_to_file(const string& filename)
 	}
 	file.close();
 }
+void Timetable::Modify_the_timetable(string section_name, string teacher_name,string new_day,string new_time)
+{
+	
+	for (auto& entry : entries) {
+		if (entry.Section.section_name == section_name && entry.Teacher.name == teacher_name) {
+			entry.day = new_day;
+			entry.Time.time_slot = new_time;
+		}
+	}
+}

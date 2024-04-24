@@ -43,10 +43,11 @@ int main() {
 		cout << "9. Print timetable for a specific teacher" << endl; 
 		cout << "10. Print timetable for a specific section" << endl;
 		cout << "11. Print timetable for a specific room" << endl; 
-		cout << "12. print timetable for a specific student"<<endl; 	 
-		cout << "13. Save to file" << endl; 
-		cout << "14. Load from file" << endl;
-		cout << "15. Exit" << endl;
+		cout << "12. print timetable for a specific student"<<endl; 
+		cout<<"13. Modify the timetable"<<endl;
+		cout << "14. Save to file" << endl; 
+		cout << "15. Load from file" << endl;
+		cout << "16. Exit" << endl;
 		cout << "Enter option: ";
 		cin >> option;
 		if (option == 1) {
@@ -196,7 +197,22 @@ int main() {
 			getline(cin, student_name);
            timetable.printStudentTimetable(section_name,student_name);
 		}
-		else if (option == 13) {
+		 
+            else if (option == 13)
+            {
+                string section_name, teacher_name, new_day, new_time;
+                cout << "Enter section name: ";
+                cin.ignore();
+                getline(cin, section_name);
+                cout << "Enter teacher name: ";
+                getline(cin, teacher_name);
+                cout << "Enter new day: ";
+               getline(cin, new_day);
+                cout << "Enter new time: ";
+                getline(cin, new_time);
+                timetable.Modify_the_timetable(section_name, teacher_name, new_day, new_time);
+            }
+		else if (option == 14) {
 			string path = "C:/Users/DELL PRECISION 5530/OneDrive/Desktop/timetable.txt"; ofstream file(path, ios::trunc);
 			if (file.is_open()) {
 				for (const auto& entry : timetable.entries) {
@@ -217,7 +233,7 @@ int main() {
 
 			}
 		}
-		else if (option == 14) {
+		else if (option == 15) {
 			string path = "C:/Users/DELL PRECISION 5530/OneDrive/Desktop/timetable.txt";
 			timetable.clearTimetable();
 			ifstream file(path);
@@ -242,7 +258,8 @@ int main() {
 			}
 			}
 
-		else if (option == 15) {
+
+		else if (option == 16) {
         cout << "Exiting program." << endl;
          timetable.save_studentdata_to_file(pathfor_student);
          timetable.save_teacherdata_to_file(pathfor_teacher);

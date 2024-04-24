@@ -42,7 +42,7 @@ public:
 	void printRoomTimetable(string room_no);
 	string getTeacherAtTime(string day, string time);
 	void printTimetableForDay(string day);
-
+	void Modify_the_timetable(string section_name, string teacher_name, string new_day, string new_time);
 	void clearTimetable();
 	void appendEntry(const TimetableEntry& entry);
 	void saveToFile(const string& filename);
